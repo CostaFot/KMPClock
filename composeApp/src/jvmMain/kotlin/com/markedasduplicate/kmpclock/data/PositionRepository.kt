@@ -2,7 +2,12 @@ package com.markedasduplicate.kmpclock.data
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowPosition
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import java.io.File
+
+@Serializable
+private data class PositionConfig(val x: Float, val y: Float)
 
 class PositionRepository {
 
@@ -11,16 +16,15 @@ class PositionRepository {
     fun loadPosition(): WindowPosition? {
         if (!configFile.exists()) return null
         return try {
-            val json = configFile.readText()
-            val x = Regex(""""x"\s*:\s*([\d.]+)""").find(json)?.groupValues?.get(1)?.toFloatOrNull()
-            val y = Regex(""""y"\s*:\s*([\d.]+)""").find(json)?.groupValues?.get(1)?.toFloatOrNull()
-            if (x != null && y != null) WindowPosition(x.dp, y.dp) else null
+            val config = Json.decodeFromString<PositionConfig>(configFile.readText())
+            WindowPosition(config.x.dp, config.y.dp)
         } catch (e: Exception) {
             null
         }
     }
 
     fun savePosition(pos: WindowPosition.Absolute) {
-        configFile.writeText("""{"x":${pos.x.value},"y":${pos.y.value}}""")
+        val config = PositionConfig(pos.x.value, pos.y.value)
+        configFile.writeText(Json.encodeToString(config))
     }
 }
