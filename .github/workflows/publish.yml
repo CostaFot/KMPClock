@@ -27,13 +27,17 @@ jobs:
         shell: bash
         run: echo "value=v1.0.$(git rev-list --count HEAD)" >> $GITHUB_OUTPUT
 
-      - name: Build Windows exe
-        run: ./gradlew :composeApp:packageReleaseExe
+      - name: Build app distributable
+        run: ./gradlew :composeApp:createReleaseDistributable
+
+      - name: Build installer with Inno Setup
+        run: '& "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer.iss'
+        shell: pwsh
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tag.outputs.value }}
           name: ${{ steps.tag.outputs.value }}
-          files: composeApp/build/compose/binaries/main-release/exe/*.exe
+          files: installer-output/DogeClock-Setup.exe
           generate_release_notes: true
