@@ -4,8 +4,7 @@
 
 A floating desktop clock widget built with Kotlin Multiplatform and Compose Desktop. A rewrite of a perfectly functional PowerShell script — because it had to be done.
 
-[Check out the blog here](https://www.costafotiadis.com/at-the-mountains-of-madness-rewriting-a-100-line-powershell-script-as-a-kmp-desktop-app/)
-
+Check out the companion blog post for this repo [here](https://www.costafotiadis.com/at-the-mountains-of-madness-rewriting-a-100-line-powershell-script-as-a-kmp-desktop-app/)
 
 ## Features
 
