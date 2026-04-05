@@ -1,27 +1,44 @@
-This is a Kotlin Multiplatform project targeting Desktop (JVM).
+![hero](hero_image.png)
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+# DogeClock
 
-### Build and Run Desktop (JVM) Application
+A floating desktop clock widget built with Kotlin Multiplatform and Compose Desktop. A rewrite of a perfectly functional PowerShell script — because it had to be done.
 
-To build and run the development version of the desktop app, use the run configuration from the run widget
-in your IDE’s toolbar or run it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:run
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:run
-  ```
+[Check out the blog here](https://www.costafotiadis.com/at-the-mountains-of-madness-rewriting-a-100-line-powershell-script-as-a-kmp-desktop-app/)
 
----
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+## Features
+
+- Transparent, undecorated, always-on-top window
+- Draggable — position is saved and restored between sessions
+- System tray icon with show/hide and exit
+
+## Install
+
+Download the latest release from the [Releases](https://github.com/CostaFot/KMPClock/releases) page.
+
+- **Windows** — run `DogeClock-Setup.exe`
+- **Linux** — install the `.deb` package
+
+## Build and Run
+
+```shell
+# macOS / Linux
+./gradlew :composeApp:run
+
+# Windows
+.\gradlew.bat :composeApp:run
+```
+
+Requires JDK 17+.
+
+## Releases
+
+Releases are published via GitHub Actions. The workflow builds in parallel:
+
+- **Windows** — Inno Setup installer (`DogeClock-Setup.exe`)
+- **Linux** — `.deb` package
+
+Triggered manually. Tagged as `v1.0.<commit_count>`.
+
+To publish a release, go to **Actions → Publish Release → Run workflow**.
