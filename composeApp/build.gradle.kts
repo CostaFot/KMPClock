@@ -27,6 +27,7 @@ kotlin {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
+            implementation("net.java.dev.jna:jna:5.14.0")
         }
     }
 }
