@@ -1,14 +1,10 @@
 package com.markedasduplicate.kmpclock.ui
 
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter
+import kmpclock.composeapp.generated.resources.Res
+import kmpclock.composeapp.generated.resources.tray_icon
+import org.jetbrains.compose.resources.painterResource
 
-internal object ClockIcon : Painter() {
-    override val intrinsicSize = Size(16f, 16f)
-    override fun DrawScope.onDraw() {
-        drawCircle(color = Color.White)
-        drawCircle(color = Color(0x99000000), radius = size.minDimension / 2 - 2f)
-    }
-}
+@Composable
+internal fun clockIcon(): Painter = painterResource(Res.drawable.tray_icon)

@@ -9,7 +9,7 @@ import com.markedasduplicate.kmpclock.data.PositionRepository
 import com.markedasduplicate.kmpclock.di.appModule
 import com.markedasduplicate.kmpclock.platform.WindowStyleHelper
 import com.markedasduplicate.kmpclock.ui.App
-import com.markedasduplicate.kmpclock.ui.ClockIcon
+import com.markedasduplicate.kmpclock.ui.clockIcon
 import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
 
@@ -39,7 +39,7 @@ fun main() {
         }
 
         Tray(
-            icon = ClockIcon,
+            icon = clockIcon(),
             tooltip = "KMPClock",
             menu = {
                 Item(if (isVisible) "Hide" else "Show", onClick = { isVisible = !isVisible })
