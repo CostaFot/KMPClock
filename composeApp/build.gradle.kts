@@ -43,7 +43,7 @@ compose.desktop {
         mainClass = "com.markedasduplicate.kmpclock.MainKt"
 
         buildTypes.release.proguard {
-            isEnabled = false
+            configurationFiles.from("proguard-rules.pro")
         }
 
         nativeDistributions {
